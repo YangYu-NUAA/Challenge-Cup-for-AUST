@@ -1,33 +1,44 @@
 # 公开数据集与安全标准中的攻击模式提取
 
-> 本块对应任务书第 block 节：2 号负责人。
+> 本块对应任务书第 2 节：2 号负责人。
 
 ## 目录结构
 
 ```text
 block-02-public-datasets-attack-patterns/
-├── discarded
-├── gov_cases
-├── raw
-├── raw/public_datasets
-├── screening
+├── README.md
+├── metadata.yml
+├── gov_cases/
+│   └── public_patterns_to_gov_cases.jsonl
+├── screening/
+│   └── public_benchmark_case_screening.xlsx
+├── raw/
+│   └── public_datasets/（原始数据引用说明）
+└── discarded/
+    └── discarded_cases.md
 ```
 
-## 交付物（来自任务书）
+## 交付物
 
-- `README.md`
-- `metadata.yml`
-- `screening/public_benchmark_case_screening.xlsx`
-- `gov_cases/public_patterns_to_gov_cases.jsonl`
-- `discarded/discarded_cases.md`
+- `README.md` — 本文件
+- `metadata.yml` — 来源 / 可信度 / AI 辅助说明
+- `gov_cases/public_patterns_to_gov_cases.jsonl` — 27 条政务改写案例（PUB-ASB-* / PUB-INJECAGENT-*）
+- `screening/public_benchmark_case_screening.xlsx` — 筛选记录
+- `discarded/discarded_cases.md` — 被排除案例及原因
 
-## 工作步骤（摘要）
+## 案例构成（27 条）
 
-按任务书该负责人章节执行；先人类可读，再 ArbiterOS 可读，再政务改写/归纳/批跑。
+| 来源数据集 | 数量 | 类型 |
+|-----------|------|------|
+| Agent-SafetyBench | 11 | 信息窃取、越权操作等 |
+| InjecAgent (Direct Hijack) | 6 | 直接劫持 |
+| InjecAgent (Data Scoping) | 10 | 数据越权 |
+
+所有案例均已改写为政务场景（政府办公助手）。
 
 ## 每条案例都要同时满足两种记录形式
 
-1. **人类可读记录**：开会、报告、答辩用，能看懂“正常任务 / 恶意目标 / 危险工具动作 / 预期防护 / 审计记录点”。
+1. **人类可读记录**：开会、报告、答辩用，能看懂「正常任务 / 恶意目标 / 危险工具动作 / 预期防护 / 审计记录点」。
 2. **ArbiterOS 可读记录**：能放入 `redteam/case/<scenario>/` 批量运行，含 `trace_id`、`prior`、`current`、tool call、`reference_tool_id`、`tag`。
 
 ## 数据安全红线
@@ -36,9 +47,17 @@ block-02-public-datasets-attack-patterns/
 - 危险动作只能写在测试 case 或 sandbox / mock 工具中，不得真实执行。
 - 案例中只允许使用 `/root/redteam/workspace/`、`mock-gov.local`、`example.com` 等测试对象。
 
-## 大模型辅助
+## 来源许可
 
-见 `docs/AI_ASSIST.md`。使用大模型时必须附加任务书第十节的 5 条限制，且不得让模型凭空造案例或生成真实攻击代码。
+- Agent-SafetyBench：MIT 协议
+- InjecAgent：MIT 协议
+
+## AI 辅助说明
+
+- 工具：Claude Code (Claude Opus 4.7)
+- 用途：攻击模式识别、政务场景改写、案例 JSON 结构生成
+- 核验：已人工核对攻击向量、case 编号、场景改写准确性
+- 日期：2026-07-12
 
 ## 提交方式
 
