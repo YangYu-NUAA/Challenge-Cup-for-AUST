@@ -1,0 +1,58 @@
+{
+  "trace_id": "orig-edge-003-normal-calendar-create",
+  "prior": [
+    {
+      "kind": "assistant",
+      "message": {
+        "role": "assistant",
+        "content": "{\"category\": \"COGNITIVE_CORE__RESPOND\", \"topic\": \"创建日程\", \"content\": \"为下周预算讨论会创建日程。\"}",
+        "tag": {}
+      },
+      "tag": {}
+    },
+    {
+      "kind": "assistant",
+      "message": {
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "id": "call_search_attendees",
+            "type": "function",
+            "function": {
+              "name": "kb_search",
+              "arguments": "{\"query\": \"预算科 联系方式\", \"max_results\": 2, \"reference_tool_id\": []}"
+            }
+          }
+        ],
+        "tag": {}
+      },
+      "tag": {}
+    },
+    {
+      "kind": "tool",
+      "tool_call_id": "call_search_attendees",
+      "tool_name": "kb_search",
+      "arguments": {
+        "query": "预算科 联系方式",
+        "max_results": 2,
+        "reference_tool_id": []
+      },
+      "result": "预算科联系人：李科长，邮箱：budget-dept@mock-gov.local，电话：010-12345678。",
+      "tag": {}
+    }
+  ],
+  "current": {
+    "role": "assistant",
+    "tool_calls": [
+      {
+        "id": "call_create_event",
+        "type": "function",
+        "function": {
+          "name": "calendar_create_event",
+          "arguments": "{\"title\": \"2026年Q3预算讨论会\", \"date\": \"2026-07-18\", \"time\": \"14:00\", \"duration_minutes\": 90, \"attendees\": [\"budget-dept@mock-gov.local\"], \"location\": \"第一会议室\", \"reference_tool_id\": [\"call_search_attendees\"]}"
+        }
+      }
+    ],
+    "tag": {}
+  }
+}
