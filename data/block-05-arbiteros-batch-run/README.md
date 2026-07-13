@@ -17,14 +17,21 @@ block-05-arbiteros-batch-run/
 ├── notes/
 │   ├── arbiteros_failure_notes.md
 │   └── arbiteros_result_summary.md
-└── runs/
-    └── 20260712T025913.880037Z/
-        ├── summary.json
-        ├── results/*.json
-        ├── parsed/*.json
-        ├── raw/*.log
-        ├── rendered_cases/*.json
-        └── observability/traces.json
+├── runs/
+│   └── 20260712T025913.880037Z/
+│       ├── summary.json
+│       ├── results/*.json
+│       ├── parsed/*.json
+│       ├── raw/*.log
+│       ├── rendered_cases/*.json
+│       └── observability/traces.json
+└── arbiteros_run_outputs/
+    ├── _index.json
+    ├── ORIG-CAL-001/
+    │   ├── results/
+    │   ├── parsed/
+    │   └── raw/
+    └── ...（共 80 个 case_id 子目录，每个含 results/parsed/raw）
 ```
 
 ## 工作步骤（摘要）
