@@ -1,33 +1,43 @@
 # 政务办公原创场景与 OpenClaw 办公 Skills
 
-> 本块对应任务书第 block 节：3 号负责人。
+> 本块对应任务书第 3 节：3 号负责人。
 
 ## 目录结构
 
 ```text
 block-03-gov-original-skills/
-├── cases
-├── skills
-├── skills/gov-calendar-task-assistant
-├── skills/gov-cross-department-assistant
-├── skills/gov-document-assistant
-├── skills/gov-mail-assistant
-├── skills/gov-meeting-assistant
+├── README.md
+├── metadata.yml
+├── cases/
+│   └── gov_original_cases.jsonl
+└── skills/
+    ├── gov-meeting-assistant/
+    ├── gov-document-assistant/
+    ├── gov-mail-assistant/
+    ├── gov-calendar-task-assistant/
+    └── gov-cross-department-assistant/
 ```
 
-## 交付物（来自任务书）
+## 交付物
 
-- `README.md`
-- `metadata.yml`
-- `cases/gov_original_cases.jsonl`
+- `README.md` — 本文件
+- `metadata.yml` — 来源 / 可信度 / AI 辅助说明
+- `cases/gov_original_cases.jsonl` — 53 条原创政务场景案例
 
-## 工作步骤（摘要）
+## 案例构成（53 条）
 
-按任务书该负责人章节执行；先人类可读，再 ArbiterOS 可读，再政务改写/归纳/批跑。
+| 攻击向量分类 | 数量 | 说明 |
+|-------------|------|------|
+| 审批伪造（ORIG-IMP） | 3 | 正常审批、伪造局长签名、冒充上级 |
+| 批量操作（ORIG-BULK） | 3 | 正常通知、批量外发通讯录、批量删除审计日志 |
+| OWASP LLM Top 10（ORIG-OWASP） | 12 | 敏感泄露、过度授权、幻觉、越权、数据投毒、间接注入等 |
+| 边界场景（ORIG-EDGE） | 5 | base64 注入、日程注入、正常场景、多轮累积、跨部门查询 |
+
+每个分类含 safe / unsafe 示例，共 22 safe + 31 unsafe。
 
 ## 每条案例都要同时满足两种记录形式
 
-1. **人类可读记录**：开会、报告、答辩用，能看懂“正常任务 / 恶意目标 / 危险工具动作 / 预期防护 / 审计记录点”。
+1. **人类可读记录**：开会、报告、答辩用，能看懂「正常任务 / 恶意目标 / 危险工具动作 / 预期防护 / 审计记录点」。
 2. **ArbiterOS 可读记录**：能放入 `redteam/case/<scenario>/` 批量运行，含 `trace_id`、`prior`、`current`、tool call、`reference_tool_id`、`tag`。
 
 ## 数据安全红线
@@ -36,9 +46,16 @@ block-03-gov-original-skills/
 - 危险动作只能写在测试 case 或 sandbox / mock 工具中，不得真实执行。
 - 案例中只允许使用 `/root/redteam/workspace/`、`mock-gov.local`、`example.com` 等测试对象。
 
-## 大模型辅助
+## 验证情况
 
-见 `docs/AI_ASSIST.md`。使用大模型时必须附加任务书第十节的 5 条限制，且不得让模型凭空造案例或生成真实攻击代码。
+原创案例已通过 ArbiterOS 批跑验证（运行批次 20260712T025913.880037Z，47/53 通过，88.7%）。
+
+## AI 辅助说明
+
+- 工具：Claude Code (Claude Opus 4.7)
+- 用途：攻击向量设计、场景内容撰写、案例 JSON 结构生成、批跑结果分析
+- 核验：已人工核对攻击向量、场景合理性、case 编号，经 ArbiterOS 批跑验证
+- 日期：2026-07-12
 
 ## 提交方式
 

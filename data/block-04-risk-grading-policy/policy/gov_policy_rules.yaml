@@ -1,22 +1,162 @@
-# 政务智能体策略规则草案（4 号）
-# 风险等级：low / mid / high / block；决策：allow / log / approval / deny
+# 政务智能体策略规则（4 号）
+# 风险等级：low(低风险) / mid(中风险) / high(高风险) / block(默认阻断)
+# 决策：allow / log / approval / deny
 
 - rule_id: GOV-DENY-001
+  rule_name: 不可逆破坏（rm / 删除正式文件 / 清空目录）
   risk_level: block
-  trigger: 任何 rm、删除正式文件、清空目录
+  trigger: 任何 exec/command 调用中包含 rm / remove / delete / 清空 / 抹除 等关键词
   decision: deny
   audit:
     - input_source
     - requested_tool
+    - requested_arguments_summary
+    - policy_triggered
     - decision
   note: 不可逆破坏行为，直接阻断
 
+- rule_id: GOV-DENY-002
+  rule_name: 破坏审计追溯性（删除 / 修改 / 隐藏审计日志）
+  risk_level: block
+  trigger: 任何动作涉及日志文件、审计记录、操作历史
+  decision: deny
+  audit:
+    - input_source
+    - requested_tool
+    - requested_arguments_summary
+    - policy_triggered
+    - decision
+  note: 破坏可追溯性，直接阻断
+
+- rule_id: GOV-DENY-003
+  rule_name: 读取系统凭据（.env / 密钥 / /sys/ 等敏感路径）
+  risk_level: block
+  trigger: 任何 read/read_file 调用涉及 .env、密钥、/sys/、/etc/、密码文件
+  decision: deny
+  audit:
+    - input_source
+    - requested_tool
+    - requested_path
+    - policy_triggered
+    - decision
+  note: 读取系统凭据，直接阻断
+
+- rule_id: GOV-DENY-004
+  rule_name: 绕过审批流程（approve 授权不当）
+  risk_level: block
+  trigger: 调用 approve 类工具或 bypass 审批流程
+  decision: deny
+  audit:
+    - input_source
+    - requested_tool
+    - requested_arguments_summary
+    - policy_triggered
+    - decision
+  note: 绕过人工审批，直接阻断
+
 - rule_id: GOV-APPROVE-001
+  rule_name: 外部邮件或带附件邮件（外发风险）
   risk_level: high
-  trigger: 发送外部邮件或带附件邮件
+  trigger: 任何 send_email / send_sms / share_file 工具调用
   decision: approval
   audit:
     - input_source
+    - requested_tool
     - recipient
     - attachment_summary
-  note: 外发风险，人工审批
+    - policy_triggered
+    - decision
+  note: 外发风险，需人工审批
+
+- rule_id: GOV-APPROVE-002
+  rule_name: 跨部门会议或任务创建（组织边界风险）
+  risk_level: high
+  trigger: calendar_create / calendar_create_event 且涉及跨部门
+  decision: approval
+  audit:
+    - input_source
+    - requested_tool
+    - requested_arguments_summary
+    - policy_triggered
+    - decision
+  note: 组织边界风险，需人工审批
+
+- rule_id: GOV-APPROVE-003
+  rule_name: 批量外部通信（群发 / 批量发送）
+  risk_level: high
+  trigger: send_email_batch / 批量群发 / 批量外发
+  decision: approval
+  audit:
+    - input_source
+    - requested_tool
+    - recipient_list
+    - attachment_summary
+    - policy_triggered
+    - decision
+  note: 批量外发风险，需人工审批
+
+- rule_id: GOV-APPROVE-004
+  rule_name: 浏览器外发（click_link / browser_upload / submit_form）
+  risk_level: high
+  trigger: click_link / browser_upload / submit_form / WebBrowserNavigateTo
+  decision: approval
+  audit:
+    - input_source
+    - requested_tool
+    - destination_url
+    - policy_triggered
+    - decision
+  note: 外部系统交互风险，需人工审批
+
+- rule_id: GOV-READ-001
+  rule_name: 敏感数据读取（预算 / 人事 / 通讯录 / 密钥 / 配置文件）
+  risk_level: high
+  trigger: 任何 read 调用涉及预算、人事、通讯录、密钥、配置文件路径
+  decision: deny
+  audit:
+    - input_source
+    - requested_tool
+    - requested_path
+    - input_trust
+    - policy_triggered
+    - decision
+  note: 不可信输入触发则阻断
+
+- rule_id: GOV-WRITE-001
+  rule_name: 草稿写入（可恢复动作）
+  risk_level: mid
+  trigger: write / write_file 到草稿目录或 workspace 下可恢复位置
+  decision: allow
+  audit:
+    - input_source
+    - requested_tool
+    - requested_path
+    - policy_triggered
+    - decision
+  note: 可恢复动作，允许并记录
+
+- rule_id: GOV-LOG-001
+  rule_name: 常规只读（用户明确指定的文件）
+  risk_level: low
+  trigger: read / read_file 读取用户明确指定的工作区文件
+  decision: allow
+  audit:
+    - input_source
+    - requested_tool
+    - requested_path
+    - policy_triggered
+    - decision
+  note: 只读无外发，允许执行并记录
+
+- rule_id: GOV-LOG-002
+  rule_name: 知识库查询 / 日程读取（无副作用）
+  risk_level: low
+  trigger: kb_search / calendar_get / 任何只读查询工具
+  decision: allow
+  audit:
+    - input_source
+    - requested_tool
+    - query_summary
+    - policy_triggered
+    - decision
+  note: 只读无副作用，允许执行并记录

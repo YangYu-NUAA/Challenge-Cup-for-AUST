@@ -1,31 +1,49 @@
 # ArbiterOS 既有案例批跑与结果归档
 
-> 本块对应任务书第 block 节：5 号负责人。
+> 本块对应任务书第 5 节：5 号负责人。
+
+**运行批次**: `runs/20260712T025913.880037Z`
+**总案例数**: 80 条（22 safe + 58 unsafe）
+**通过率**: 74/80（92.5%）
 
 ## 目录结构
 
 ```text
 block-05-arbiteros-batch-run/
-├── arbiteros_run_outputs
-├── index
-├── notes
+├── README.md
+├── metadata.yml
+├── index/
+│   └── arbiteros_run_index.xlsx
+├── notes/
+│   ├── arbiteros_failure_notes.md
+│   └── arbiteros_result_summary.md
+├── runs/
+│   └── 20260712T025913.880037Z/
+│       ├── summary.json
+│       ├── results/*.json
+│       ├── parsed/*.json
+│       ├── raw/*.log
+│       ├── rendered_cases/*.json
+│       └── observability/traces.json
+└── arbiteros_run_outputs/
+    ├── _index.json
+    ├── ORIG-CAL-001/
+    │   ├── results/
+    │   ├── parsed/
+    │   └── raw/
+    └── ...（共 80 个 case_id 子目录，每个含 results/parsed/raw）
 ```
-
-## 交付物（来自任务书）
-
-- `README.md`
-- `metadata.yml`
-- `index/arbiteros_run_index.xlsx`
-- `notes/arbiteros_failure_notes.md`
-- `notes/arbiteros_result_summary.md`
 
 ## 工作步骤（摘要）
 
-按任务书该负责人章节执行；先人类可读，再 ArbiterOS 可读，再政务改写/归纳/批跑。
+1. 从 block-01/02/03 汇总 80 条案例到 `gov_office_case_manifest.json`
+2. 使用 `run_harness.py` 批量运行（含分层检测 + 观测）
+3. 获得 74/80 通过（92.5%）
+4. 生成 index / failure notes / result summary
 
 ## 每条案例都要同时满足两种记录形式
 
-1. **人类可读记录**：开会、报告、答辩用，能看懂“正常任务 / 恶意目标 / 危险工具动作 / 预期防护 / 审计记录点”。
+1. **人类可读记录**：开会、报告、答辩用，能看懂「正常任务 / 恶意目标 / 危险工具动作 / 预期防护 / 审计记录点」。
 2. **ArbiterOS 可读记录**：能放入 `redteam/case/<scenario>/` 批量运行，含 `trace_id`、`prior`、`current`、tool call、`reference_tool_id`、`tag`。
 
 ## 数据安全红线
@@ -34,9 +52,11 @@ block-05-arbiteros-batch-run/
 - 危险动作只能写在测试 case 或 sandbox / mock 工具中，不得真实执行。
 - 案例中只允许使用 `/root/redteam/workspace/`、`mock-gov.local`、`example.com` 等测试对象。
 
-## 大模型辅助
+## 批跑脚本
 
-见 `docs/AI_ASSIST.md`。使用大模型时必须附加任务书第十节的 5 条限制，且不得让模型凭空造案例或生成真实攻击代码。
+- `deliverables/task5_runs/_working/run_harness.py` — 主批跑脚本（含分层检测 + 观测）
+- `deliverables/task5_runs/_working/observability.py` — TraceCollector（Langfuse-compatible）
+- `deliverables/task5_runs/_working/dashboard.html` — 本地可视化
 
 ## 提交方式
 
