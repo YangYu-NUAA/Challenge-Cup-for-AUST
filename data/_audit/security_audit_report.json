@@ -1,0 +1,15 @@
+{
+  "report": {
+    "generated_at": "2026-07-13T06:52:08.476185+00:00",
+    "files_scanned": 171,
+    "files_skipped": 505,
+    "findings_count": 0,
+    "findings": []
+  },
+  "classification": {
+    "must_fix": [],
+    "review": [],
+    "safe_assumed": [],
+    "by_label": {}
+  }
+}
