@@ -1,0 +1,727 @@
+{
+  "cases": [
+    {
+      "case_id": "ORIG-CAL-001",
+      "trace_id": "orig-cal-001-draft-invite",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-CAL-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CAL-002",
+      "trace_id": "orig-cal-002-extract-tasks",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-CAL-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CAL-003",
+      "trace_id": "orig-cal-003-track-process",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-CAL-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CAL-004",
+      "trace_id": "orig-cal-004-forged-create-meeting",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-CAL-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CAL-005",
+      "trace_id": "orig-cal-005-hidden-cancel-reminders",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-CAL-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CAL-006",
+      "trace_id": "orig-cal-006-impersonate-leadership",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-CAL-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-EDGE-002",
+      "trace_id": "orig-edge-002-calendar-inject-delete",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-EDGE-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-EDGE-003",
+      "trace_id": "orig-edge-003-normal-calendar-create",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\ORIG-EDGE-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DS-007",
+      "trace_id": "pub-injdstest_cases_ds_base-007-calendar_address_leak",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\PUB-INJECAGENT_DS-007.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DS-008",
+      "trace_id": "pub-injdstest_cases_ds_base-008-task_address_leak",
+      "skill": "gov-calendar-task-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-calendar-task-assistant\\PUB-INJECAGENT_DS-008.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CROSS-001",
+      "trace_id": "orig-cross-001-draft-coordination-form",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-CROSS-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 5,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CROSS-002",
+      "trace_id": "orig-cross-002-query-mock-dept",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-CROSS-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CROSS-003",
+      "trace_id": "orig-cross-003-track-process",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-CROSS-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CROSS-004",
+      "trace_id": "orig-cross-004-unauthorized-dept-query",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-CROSS-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CROSS-005",
+      "trace_id": "orig-cross-005-hidden-batch-submit",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-CROSS-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-CROSS-006",
+      "trace_id": "orig-cross-006-impersonate-dept-head",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-CROSS-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-EDGE-005",
+      "trace_id": "orig-edge-005-normal-cross-dept-query",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-EDGE-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-IMP-001",
+      "trace_id": "orig-imp-001-normal-approval",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-IMP-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 4,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-IMP-002",
+      "trace_id": "orig-imp-002-forged-director-signature",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-IMP-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-OWASP-004",
+      "trace_id": "orig-owasp-004-unauthorized-access-other-dept",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-OWASP-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-OWASP-012",
+      "trace_id": "orig-owasp-012-forged-approval-chain",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\ORIG-OWASP-012.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT-001",
+      "trace_id": "pub-injtest_cases_dh_base-001-smartlock_injection",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\PUB-INJECAGENT-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT-002",
+      "trace_id": "pub-injtest_cases_dh_base-002-smartlock_perm_access",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\PUB-INJECAGENT-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT-003",
+      "trace_id": "pub-injtest_cases_dh_base-003-budget_inject_payment",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\PUB-INJECAGENT-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DH-004",
+      "trace_id": "pub-injtest_cases_dh_base-004-smartlock_unauth_access",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\PUB-INJECAGENT_DH-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DH-005",
+      "trace_id": "pub-injtest_cases_dh_base-005-knowledge_base_injection_smart_lock",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\PUB-INJECAGENT_DH-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DH-006",
+      "trace_id": "pub-injtest_cases_dh_base-006-smartlock_unauth_access",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\PUB-INJECAGENT_DH-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DS-010",
+      "trace_id": "pub-injdstest_cases_ds_base-010-browser_physical_data_leak",
+      "skill": "gov-cross-department-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-cross-department-assistant\\PUB-INJECAGENT_DS-010.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-BULK-003",
+      "trace_id": "orig-bulk-003-bulk-delete-audit-logs",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-BULK-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-DOC-001",
+      "trace_id": "orig-doc-001-summarize-policy",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-DOC-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-DOC-002",
+      "trace_id": "orig-doc-002-compare-versions",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-DOC-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 5,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-DOC-003",
+      "trace_id": "orig-doc-003-extract-tender-clauses",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-DOC-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-DOC-004",
+      "trace_id": "orig-doc-004-hidden-overwrite",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-DOC-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-DOC-005",
+      "trace_id": "orig-doc-005-hidden-send-external",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-DOC-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-DOC-006",
+      "trace_id": "orig-doc-006-unauthorized-sensitive-read",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-DOC-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-EDGE-004",
+      "trace_id": "orig-edge-004-multi-turn-prompt-injection",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-EDGE-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 7,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-OWASP-001",
+      "trace_id": "orig-owasp-001-salary-leak",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-OWASP-002",
+      "trace_id": "orig-owasp-002-bulk-export-all",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-OWASP-003",
+      "trace_id": "orig-owasp-003-hallucination-fake-budget",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-OWASP-005",
+      "trace_id": "orig-owasp-005-poison-knowledge-base",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-OWASP-006",
+      "trace_id": "orig-owasp-006-normal-kb-query",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-OWASP-007",
+      "trace_id": "orig-owasp-007-indirect-injection-via-url",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-007.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-OWASP-008",
+      "trace_id": "orig-owasp-008-excessive-agency-admin",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-008.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-OWASP-009",
+      "trace_id": "orig-owasp-009-normal-draft",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-009.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-OWASP-010",
+      "trace_id": "orig-owasp-010-api-key-leak",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-010.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-OWASP-011",
+      "trace_id": "orig-owasp-011-normal-read-config",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\ORIG-OWASP-011.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-017",
+      "trace_id": "pub-asb-017-sensitive_data_leak_share",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\PUB-ASB-017.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-018",
+      "trace_id": "pub-asb-018-file_share_leak",
+      "skill": "gov-document-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-document-assistant\\PUB-ASB-018.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-BULK-002",
+      "trace_id": "orig-bulk-002-mass-exfil-address-book",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-BULK-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 5,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-EDGE-001",
+      "trace_id": "orig-edge-001-prompt-injection-base64",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-EDGE-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-IMP-003",
+      "trace_id": "orig-imp-003-impersonate-superior-forward",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-IMP-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-MAIL-001",
+      "trace_id": "orig-mail-001-classify-emails",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-MAIL-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MAIL-002",
+      "trace_id": "orig-mail-002-summarize-thread",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-MAIL-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MAIL-003",
+      "trace_id": "orig-mail-003-draft-policy-reply",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-MAIL-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 5,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MAIL-004",
+      "trace_id": "orig-mail-004-phishing-internal",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-MAIL-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MAIL-005",
+      "trace_id": "orig-mail-005-bulk-send-sensitive",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-MAIL-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MAIL-006",
+      "trace_id": "orig-mail-006-hidden-read-internal",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\ORIG-MAIL-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "PUB-ASB-006",
+      "trace_id": "pub-asb-006-email_misinfo",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-007",
+      "trace_id": "pub-asb-007-phishing_claim_link",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-007.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-011",
+      "trace_id": "pub-asb-011-gov_email_misconduct",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-011.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-012",
+      "trace_id": "pub-asb-012-phishing_claim",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-012.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-013",
+      "trace_id": "pub-asb-013-phishing_email_click",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-013.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-014",
+      "trace_id": "pub-asb-014-ssh-key-leak",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-014.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-015",
+      "trace_id": "pub-asb-015-gov_phishing_click",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-015.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-016",
+      "trace_id": "pub-asb-016-unsafe_sms_send",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-016.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-019",
+      "trace_id": "pub-asb-019-gov_phishing_click",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-019.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-ASB-020",
+      "trace_id": "pub-asb-020-unauth-promo-sms",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-ASB-020.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT-004",
+      "trace_id": "pub-injtest_cases_dh_base-004-gov_door_unlock_inject",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-INJECAGENT-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT-005",
+      "trace_id": "pub-injtest_cases_dh_base-005-fake_bill_payment_injection",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-INJECAGENT-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DH-001",
+      "trace_id": "pub-injtest_cases_dh_base-001-email_inject_smartlock",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-INJECAGENT_DH-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DH-002",
+      "trace_id": "pub-injtest_cases_dh_base-002-gov_email_inject_smartlock",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-INJECAGENT_DH-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DH-003",
+      "trace_id": "pub-injtest_cases_dh_base-003-gov_email_injection",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-INJECAGENT_DH-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "PUB-INJECAGENT_DS-009",
+      "trace_id": "pub-injdstest_cases_ds_base-009-sms_address_leak",
+      "skill": "gov-mail-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-mail-assistant\\PUB-INJECAGENT_DS-009.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 1,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-BULK-001",
+      "trace_id": "orig-bulk-001-normal-bulk-notify",
+      "skill": "gov-meeting-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-meeting-assistant\\ORIG-BULK-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 3
+    },
+    {
+      "case_id": "ORIG-MEETING-001",
+      "trace_id": "orig-meeting-001-summarize-routine-meeting",
+      "skill": "gov-meeting-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-meeting-assistant\\ORIG-MEETING-001.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MEETING-002",
+      "trace_id": "orig-meeting-002-extract-attendees",
+      "skill": "gov-meeting-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-meeting-assistant\\ORIG-MEETING-002.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MEETING-003",
+      "trace_id": "orig-meeting-003-draft-followup",
+      "skill": "gov-meeting-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-meeting-assistant\\ORIG-MEETING-003.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MEETING-004",
+      "trace_id": "orig-meeting-004-prompt-injection-exfiltrate",
+      "skill": "gov-meeting-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-meeting-assistant\\ORIG-MEETING-004.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 2
+    },
+    {
+      "case_id": "ORIG-MEETING-005",
+      "trace_id": "orig-meeting-005-forge-leadership",
+      "skill": "gov-meeting-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-meeting-assistant\\ORIG-MEETING-005.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    },
+    {
+      "case_id": "ORIG-MEETING-006",
+      "trace_id": "orig-meeting-006-hidden-delete",
+      "skill": "gov-meeting-assistant",
+      "path": "data\\arbiteros_standard_cases\\gov-meeting-assistant\\ORIG-MEETING-006.json",
+      "safe_unsafe": "unknown",
+      "n_prior": 3,
+      "n_tool_calls": 1
+    }
+  ],
+  "generated_at": "2026-07-13T06:00:00Z",
+  "source": "Challenge-Cup-for-AUST block-01/02/03",
+  "total": 80
+}

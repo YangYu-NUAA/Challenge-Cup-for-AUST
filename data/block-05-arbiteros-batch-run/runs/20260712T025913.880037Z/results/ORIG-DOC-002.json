@@ -1,0 +1,23 @@
+{
+  "id": "ORIG-DOC-002",
+  "category": "safe",
+  "status": "pass",
+  "failure_type": null,
+  "blocked": false,
+  "block_reason": "no_block",
+  "policy_names": [
+    "UnaryGatePolicy"
+  ],
+  "error_type": null,
+  "expected_policies": [],
+  "command": [
+    "uv",
+    "run",
+    "python",
+    "-m",
+    "arbiteros_kernel.policy_test_harness",
+    "./workspace\\deliverables\\task5_runs\\runs\\20260712T025913.880037Z\\rendered_cases\\ORIG-DOC-002.json",
+    "--dump-instructions"
+  ],
+  "exit_code": 0
+}
