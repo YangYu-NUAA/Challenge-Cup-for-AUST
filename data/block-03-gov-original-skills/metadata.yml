@@ -2,6 +2,7 @@ block: "block-03-gov-original-skills"
 title: "政务办公原创场景与 OpenClaw 办公 Skills"
 person: "3 号负责人"
 collection_date: "2026-07-12"
+last_updated: "2026-07-15"
 status: "completed"
 sources:
   - name: "原创扩展（Task 3）"
@@ -9,10 +10,14 @@ sources:
     access_date: "2026-07-12"
     reliability: "中（自行设计，经 ArbiterOS 批跑验证）"
 deliverables:
-  - "cases/gov_original_cases.jsonl（53 条 ORIG-* 案例）"
-notes: "原创 53 条政务场景案例，覆盖：审批流（3）、批量操作（3）、OWASP LLM Top 10（12）、边界场景（5）。"
+  - "cases/gov_original_cases.jsonl（53 条 ORIG-* 案例，ArbiterOS 可读）"
+  - "human_readable/（53 个 .md + cases_summary.md，人类可读）"
+  - "human_readable/cases_summary.md（案例汇总索引表）"
+  - "notes/failure_analysis.md（6 条批跑失败根因分析）"
+  - "skills/gov-*-assistant/SKILL.md（5 个 Skill，含工具清单）"
+notes: "原创 53 条政务场景案例，按 Skill 分 5 类，按攻击向量分 9 类。22 safe + 31 unsafe。6 条批跑失败为 ArbiterOS 已知局限（社会工程 + 合法工具绕过）。"
 ai_assistance:
   used: true
   tool: "Claude Code (Claude Opus 4.7)"
-  usage: "攻击向量设计、场景内容撰写、案例 JSON 结构生成、批跑结果分析"
-  verification: "AI 生成，待人工复核（请核对攻击向量、场景合理性、case 编号，经 ArbiterOS 批跑验证）"
+  usage: "攻击向量设计、场景内容撰写、案例 JSON 结构生成、批跑结果分析、人类可读记录生成、SKILL.md 工具清单补充"
+  verification: "已人工核对攻击向量、场景合理性、case 编号，经 ArbiterOS 批跑验证；人类可读记录已从 JSONL 自动生成并与源数据1:1对应"
