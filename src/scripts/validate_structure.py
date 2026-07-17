@@ -7,6 +7,7 @@
 """
 
 from pathlib import Path
+import json
 import re
 import sys
 
@@ -77,6 +78,88 @@ BLOCK_REQUIREMENTS = {
 METADATA_KEYS = ["block", "title", "person", "collection_date", "status", "sources", "deliverables"]
 
 
+def validate_jsonl(path: Path) -> list[str]:
+    """Validate that a JSONL deliverable has parseable rows."""
+    errors: list[str] = []
+    rows = 0
+    seen_ids: set[str] = set()
+    duplicate_ids: set[str] = set()
+    for line_no, line in enumerate(path.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        rows += 1
+        try:
+            row = json.loads(line)
+        except json.JSONDecodeError as exc:
+            errors.append(f"{path}: 第 {line_no} 行不是合法 JSON: {exc}")
+            continue
+        row_id = str(row.get("case_number") or row.get("trace_id") or row.get("id") or "")
+        if row_id:
+            if row_id in seen_ids:
+                duplicate_ids.add(row_id)
+            seen_ids.add(row_id)
+    if rows == 0:
+        errors.append(f"{path}: JSONL 没有数据行")
+    if duplicate_ids:
+        errors.append(f"{path}: 存在重复编号 {sorted(duplicate_ids)[:5]}")
+    return errors
+
+
+def validate_xlsx(path: Path) -> list[str]:
+    """Validate that an XLSX deliverable contains at least one data row."""
+    try:
+        import openpyxl
+    except ImportError:
+        return [f"{path}: 未安装 openpyxl，无法检查 Excel 数据行"]
+
+    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    data_rows = 0
+    for ws in wb.worksheets:
+        nonempty_rows = 0
+        for row in ws.iter_rows(values_only=True):
+            if any(cell is not None for cell in row):
+                nonempty_rows += 1
+        data_rows += max(0, nonempty_rows - 1)
+    if data_rows == 0:
+        return [f"{path}: Excel 只有表头或为空"]
+    return []
+
+
+def validate_standard_cases() -> list[str]:
+    """Validate the unified ArbiterOS case library."""
+    errors: list[str] = []
+    base = DATA_DIR / "arbiteros_standard_cases"
+    manifest_path = base / "gov_office_case_manifest.json"
+    if not manifest_path.exists():
+        return ["缺少统一案例库 manifest: data/arbiteros_standard_cases/gov_office_case_manifest.json"]
+
+    try:
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        return [f"{manifest_path}: 不是合法 JSON: {exc}"]
+
+    case_files = sorted(base.glob("*/*.json"))
+    manifest_cases = manifest.get("cases", [])
+    if manifest.get("total") != len(case_files):
+        errors.append(f"统一案例库 total={manifest.get('total')}，实际文件数={len(case_files)}")
+    if isinstance(manifest_cases, list) and len(manifest_cases) != len(case_files):
+        errors.append(f"统一案例库 manifest cases={len(manifest_cases)}，实际文件数={len(case_files)}")
+
+    for case_path in case_files:
+        try:
+            case = json.loads(case_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            errors.append(f"{case_path}: 不是合法 JSON: {exc}")
+            continue
+        for key in ("trace_id", "prior", "current"):
+            if key not in case:
+                errors.append(f"{case_path}: 缺少 {key}")
+        current = case.get("current") or {}
+        if "tool_calls" not in current and "content" not in current:
+            errors.append(f"{case_path}: current 缺少 tool_calls 或 content")
+    return errors
+
+
 def validate_block(name: str, spec: dict, strict: bool):
     errors, warnings = [], []
     block_dir = DATA_DIR / name
@@ -91,6 +174,10 @@ def validate_block(name: str, spec: dict, strict: bool):
         elif strict and f.stat().st_size == 0:
             # 模板生成的示例 jsonl/xlsx 已有内容，空文件视为未填写
             warnings.append(f"文件为空，请填写: data/{name}/{rel}")
+        elif strict and f.suffix == ".jsonl":
+            errors.extend(validate_jsonl(f))
+        elif strict and f.suffix == ".xlsx":
+            errors.extend(validate_xlsx(f))
 
     meta = block_dir / "metadata.yml"
     if meta.exists():
@@ -99,7 +186,7 @@ def validate_block(name: str, spec: dict, strict: bool):
             for key in METADATA_KEYS:
                 if not re.search(rf"^{re.escape(key)}:\s", text, re.MULTILINE):
                     errors.append(f"metadata.yml 缺少字段: {key}")
-            if strict and 'used: false' in text:
+            if strict and name != "system-design" and 'used: false' in text:
                 warnings.append("metadata.yml 中 ai_assistance.used 仍为 false，如已用 AI 请更新")
         except Exception as e:
             errors.append(f"metadata.yml 读取失败: {e}")
@@ -123,6 +210,15 @@ def main():
             for w in warnings:
                 print(f"  ⚠️  {w}")
         if not errors and not warnings:
+            print("  ✅ 通过")
+    if strict:
+        print("\n[arbiteros_standard_cases]")
+        case_errors = validate_standard_cases()
+        if case_errors:
+            all_ok = False
+            for e in case_errors:
+                print(f"  ❌ {e}")
+        else:
             print("  ✅ 通过")
     print("\n" + "=" * 64)
     print("✅ 结构检查通过（无阻塞错误）" if all_ok else "❌ 存在阻塞错误，请按提示补充")

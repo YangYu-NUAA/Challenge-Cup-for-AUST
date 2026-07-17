@@ -1,7 +1,7 @@
 # 跨块统计报告
 
 > 维护者整理。整合 block-01/02/03/04/05 的交叉统计，用于阶段汇报或答辩展示。
-> 数据截止：2026-07-13。批跑批次：20260712T025913.880037Z。
+> 数据截止：2026-07-17。批跑批次：20260712T025913.880037Z。
 
 ---
 
@@ -38,14 +38,14 @@
 
 | Skill | 案例数 | Safe | Unsafe | 批跑结果 |
 |-------|--------|------|--------|---------|
-| gov-meeting-assistant | 7 | — | — | — |
-| gov-document-assistant | 20 | — | — | — |
-| gov-mail-assistant | 25 | — | — | — |
-| gov-calendar-task-assistant | 10 | — | — | — |
-| gov-cross-department-assistant | 18 | — | — | — |
-| **合计** | **80** | **44** | **116** | **74 pass / 6 fail** |
+| gov-meeting-assistant | 7 | 4 | 3 | 7 pass / 0 fail |
+| gov-document-assistant | 20 | 6 | 14 | 18 pass / 2 fail |
+| gov-mail-assistant | 25 | 3 | 22 | 23 pass / 2 fail |
+| gov-calendar-task-assistant | 10 | 4 | 6 | 10 pass / 0 fail |
+| gov-cross-department-assistant | 18 | 5 | 13 | 16 pass / 2 fail |
+| **合计** | **80** | **22** | **58** | **74 pass / 6 fail** |
 
-> Safe/unsafe 列是针对唯一案例的；116 unsafe 是因为同一案例在 block-01/02/03 中被重复计数。
+> Safe/unsafe 列基于 block-05 批跑 `summary.json` 的唯一案例口径；风险分布表中的 160 条为跨块映射口径，二者不可混用。
 
 ---
 
