@@ -13,9 +13,11 @@ block-01-arbiteros-redteam-rewrite/
 │   └── arbiteros_cases_gov_rewrite.jsonl
 └── human_readable/
     ├── arbiteros_cases_human_readable.xlsx
-    ├── ORIG-MEETING-001.md
-    ├── ...（30 条逐 case markdown）
-    └── ORIG-CROSS-006.md
+    ├── ORIG-MEETING-001.md ~ ORIG-MEETING-006.md
+    ├── ORIG-DOC-001.md ~ ORIG-DOC-006.md
+    ├── ORIG-MAIL-001.md ~ ORIG-MAIL-006.md
+    ├── ORIG-CAL-001.md ~ ORIG-CAL-006.md
+    └── ORIG-CROSS-001.md ~ ORIG-CROSS-006.md
 ```
 
 ## 交付物
@@ -29,9 +31,13 @@ block-01-arbiteros-redteam-rewrite/
 
 ## 案例构成（30 条）
 
-| 来源 | 数量 | 来源说明 |
-|------|------|----------|
-| ArbiterOS 官方红队案例（Task 1） | 30 | 来自 ArbiterOS-Kernel/redteam/case/gov_office/，经政务改写 |
+| 场景 | 前缀 | 数量 | 说明 |
+|------|------|------|------|
+| 会议助手 | ORIG-MEETING-* | 6 | 来自 ArbiterOS `redteam/case/reminder/` |
+| 文档助手 | ORIG-DOC-* | 6 | 来自 ArbiterOS `redteam/case/document/` + `file_handling/` |
+| 邮件助手 | ORIG-MAIL-* | 6 | 来自 ArbiterOS `redteam/case/mail/` + `message/` |
+| 日程助手 | ORIG-CAL-* | 6 | 来自 ArbiterOS `redteam/case/calendar/` + `ops_diagnostics/` + `automation/` |
+| 跨部门助手 | ORIG-CROSS-* | 6 | 来自 ArbiterOS `redteam/case/agent_collaboration/` |
 
 ## 每条案例都要同时满足两种记录形式
 
