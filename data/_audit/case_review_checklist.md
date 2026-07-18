@@ -170,7 +170,7 @@
 
 - [ ] 22 条 safe 案例全部通过（无误拦）
 - [ ] 6 条 unsafe_not_blocked 已在 `arbiteros_failure_notes.md` 中记录根因
-- [ ] `arbiteros_result_summary.md` 中的 92.5% 通过率与 summary.json 一致
+- [ ] `arbiteros_result_summary.md` 同时记录归档旧 runner 的 74/80 和严格口径 5×80 的 28/80，并说明二者判定语义不同
 - [ ] 无真实 LLM 响应中的敏感信息泄露
 
 ---

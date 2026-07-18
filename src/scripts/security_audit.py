@@ -1,16 +1,13 @@
 """Security audit for Challenge-Cup-for-AUST.
 
-Scans data/ for real sensitive material that should NOT be committed:
+Scans repository text artifacts for real sensitive material that should NOT be committed:
 - Real API keys, passwords, tokens
 - Personal names (user's name, etc.)
 - Internal IPs / private network addresses
 - Real email addresses
 - Private keys / JWTs
 
-Excludes:
-- Markdown / HTML / YAML metadata (legitimate Chinese text)
-- Code files that merely reference env vars (os.environ.API_KEY)
-- Test data patterns (example.com, mock-gov.local, sk-xxxx)
+Includes Markdown, HTML, YAML, JSON and source code. Binary files are outside the scan scope.
 
 Outputs a markdown report to data/_audit/security_audit_report.md
 """
@@ -32,12 +29,14 @@ AUDIT_DIR = DATA / "_audit"
 # Exclude these subdirs entirely
 EXCLUDE_DIRS = {
     ".git", "_audit", "__pycache__", "node_modules",
-    "docs", "system", ".github",
 }
 
-# Exclude these file patterns (legitimate Chinese / metadata)
-EXCLUDE_SUFFIXES = {
-    ".md", ".html", ".yml", ".yaml", ".json",
+# Explicit text formats included in the audit. Binary artifacts are reported as skipped.
+INCLUDE_SUFFIXES = {
+    ".py", ".ps1", ".sh", ".bat", ".cmd",
+    ".md", ".html", ".htm", ".yml", ".yaml", ".json", ".jsonl",
+    ".txt", ".csv", ".tsv", ".toml", ".ini", ".cfg", ".xml",
+    ".js", ".jsx", ".ts", ".tsx", ".css", ".env", ".gitignore",
 }
 
 # Exclude these known-safe paths (test data described in deployment.md)
@@ -94,12 +93,17 @@ PATTERNS: list[tuple[str, re.Pattern, bool]] = [
         re.compile(r"-----BEGIN\s+(?:RSA\s+)?PRIVATE\s+KEY-----"),
         False,
     ),
-    (
-        "personal_name_denylist",
-        re.compile(r"(?<!\w)胡希(?!\w)"),
-        False,
-    ),
 ]
+
+personal_name = os.environ.get("AUDIT_PERSONAL_NAME", "").strip()
+if personal_name:
+    PATTERNS.append(
+        (
+            "personal_name_denylist",
+            re.compile(rf"(?<!\w){re.escape(personal_name)}(?!\w)"),
+            False,
+        )
+    )
 
 EXCLUDE_LINE_PATTERNS = [
     re.compile(r"#.*#\s*示例", re.I),
@@ -137,13 +141,12 @@ def audit() -> dict:
     files_scanned = 0
     files_skipped = 0
 
-    for root, dirs, files in os.walk(DATA):
+    for root, dirs, files in os.walk(REPO):
         dirs[:] = [d for d in dirs if d not in EXCLUDE_DIRS]
         for fname in files:
             fpath = Path(root) / fname
 
-            # Skip excluded suffixes
-            if fpath.suffix.lower() in EXCLUDE_SUFFIXES:
+            if fpath.suffix.lower() not in INCLUDE_SUFFIXES and fpath.name not in {"LICENSE", "NOTICE"}:
                 files_skipped += 1
                 continue
 
@@ -215,8 +218,8 @@ def render(report: dict, cls: dict) -> str:
         "# 数据安全审计报告",
         "",
         f"> 生成时间：{report['generated_at']}",
-        f"> 扫描范围：`data/`（排除 docs/ system/ .github/ .git/ 以及 .md/.html/.yml/.yaml/.json 文件）",
-        f"> 扫描文件数：{report['files_scanned']}，跳过（非代码格式）：{report['files_skipped']}",
+        f"> 扫描范围：仓库内常见文本格式（含 `.md/.html/.yml/.yaml/.json/.jsonl` 与源码）；排除 `.git/`、`data/_audit/`、依赖目录和二进制文件",
+        f"> 扫描文本文件数：{report['files_scanned']}，跳过（二进制或未列入文本白名单）：{report['files_skipped']}",
         "",
         "## 摘要",
         "",
@@ -268,7 +271,7 @@ def render(report: dict, cls: dict) -> str:
             "",
             "## 结论",
             "",
-            "未发现必须修复或需要复核的敏感内容。仓库符合数据安全红线。",
+            "在上述文本扫描范围和检测规则内，未发现必须修复或需要复核的敏感内容。该结论不等同于对整个仓库的完全安全证明。",
         ]
 
     lines += [
@@ -277,14 +280,15 @@ def render(report: dict, cls: dict) -> str:
         "",
         "## 审计方法",
         "",
-        "- 排除 `.md/.html/.yml/.yaml/.json` 文件（避免把项目名、注释、metadata 误报为敏感内容）",
-        "- 排除 `docs/`、`system/`、`.github/` 目录（含正常中文文档）",
-        "- `personal_name` 使用用户姓名的精确匹配，不再使用泛化的 CJK 姓名猜测规则",
+        "- 纳入 `.md/.html/.yml/.yaml/.json/.jsonl`、脚本和常见配置文本",
+        "- 排除 `.git/`、生成的 `_audit/` 报告、依赖目录和二进制文件",
+        "- 可通过 `AUDIT_PERSONAL_NAME` 传入待检查姓名；未设置时不执行个人姓名精确匹配",
         "- `api_key_sk_prefix` 仅匹配 `sk-` 后跟 ≥8 位字符的 OpenAI 风格 key",
         "- `api_key_generic` 匹配 `api_key=...` /value ≥16 字符的赋值语句",
         "- `private_ip` 限制在 RFC1918 三类私网段（192.168.x.x / 10.x.x.x / 172.16-31.x.x）",
         "- `real_email` 排除 `example.com`、`test.com`、`mock-gov.local`",
         "- 已记录的测试数据地址（如 `43.161.233.143:5173`）通过 `KNOWN_SAFE_PATTERNS` 豁免",
+        "- 本审计是基于正则的静态扫描，不能替代人工复核、依赖审计和运行时安全测试",
         "",
     ]
     return "\n".join(lines)

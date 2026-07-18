@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T15:49:21.740659+00:00",
+  "generated_at": "2026-07-18T17:00:42.057949+00:00",
   "scope": "block-01..block-05 only; system-design excluded",
   "checks": [
     {
@@ -48,7 +48,7 @@
       "block": "block-01",
       "item": "源路径索引",
       "status": "PASS",
-      "detail": "7145 bytes"
+      "detail": "7172 bytes"
     },
     {
       "block": "block-02",
@@ -166,9 +166,9 @@
     },
     {
       "block": "block-04",
-      "item": "语义规则 YAML",
+      "item": "语义规则设计文档",
       "status": "PASS",
-      "detail": "6017 字符"
+      "detail": "6144 字符；未验证运行时语义"
     },
     {
       "block": "block-05",
@@ -178,9 +178,9 @@
     },
     {
       "block": "block-05",
-      "item": "summary.json 通过率",
+      "item": "summary.json 归档计数一致性",
       "status": "PASS",
-      "detail": "74/80"
+      "detail": "归档字段 74/80；不评价 pass 判定语义"
     },
     {
       "block": "block-05",

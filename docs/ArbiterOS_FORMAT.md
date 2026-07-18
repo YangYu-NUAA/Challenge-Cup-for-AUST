@@ -504,7 +504,7 @@ data/block-04-risk-grading-policy/
 本仓库的 humans-readable 视图：
 - `block-01/human_readable/arbiteros_cases_human_readable.xlsx`：80 条案例一句话摘要 + 攻击向量 + 预期防护
 - `block-05/notes/arbiteros_result_summary.md`：可直接放入阶段汇报
-- `block-05/notes/arbiteros_failure_notes.md`：6 条真阴性根因分析
+- `block-05/notes/arbiteros_failure_notes.md`：6 条假阴性根因分析
 
 ---
 

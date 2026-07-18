@@ -17,8 +17,9 @@ deliverables:
   - "notes/arbiteros_failure_notes.md（失败案例分析）"
   - "notes/arbiteros_result_summary.md（运行摘要）"
   - "runs/20260712T025913.880037Z/（完整运行目录：summary/results/parsed/raw/rendered_cases/observability）"
+  - "repeat_runs/20260718T164152.127456Z/（5×80 严格口径重复实验）"
   - "arbiteros_run_outputs/（按 case_id 索引：80 case_id × 1 run，含 _index.json）"
-notes: "已运行 80 条案例（22 safe + 58 unsafe），总通过率 74/80（92.5%）。"
+notes: "归档旧 runner 口径为 74/80；严格 pass 定义下完成 5×80 受控复跑，五轮均为 28/80（35.0%）。旧 runner 将 46 条 policy_safety_warning 计作 blocked，二者不可直接比较。"
 ai_assistance:
   used: true
   tool: "Claude Code (Claude Opus 4.7)"

@@ -10,7 +10,11 @@ block-01-arbiteros-redteam-rewrite/
 ├── metadata.yml
 ├── arbiteros_case_source_index.md
 ├── gov_rewrite/
-│   └── arbiteros_cases_gov_rewrite.jsonl
+│   ├── arbiteros_cases_gov_rewrite.jsonl
+│   ├── arbiteros_cases_gov_rewrite_expanded.jsonl
+│   ├── core_evaluation_cases.jsonl
+│   ├── enhanced_training_stress_cases.jsonl
+│   └── enhanced_semantic_dedup_index.jsonl
 └── human_readable/
     ├── arbiteros_cases_human_readable.xlsx
     ├── ORIG-MEETING-001.md
@@ -23,6 +27,10 @@ block-01-arbiteros-redteam-rewrite/
 - `README.md` — 本文件
 - `metadata.yml` — 来源 / 可信度 / AI 辅助说明
 - `gov_rewrite/arbiteros_cases_gov_rewrite.jsonl` — 80 条政务改写 ArbiterOS 可读案例
+- `gov_rewrite/core_evaluation_cases.jsonl` — 80 条核心唯一评测案例（22 safe + 58 unsafe）
+- `gov_rewrite/enhanced_training_stress_cases.jsonl` — 167 条增强训练/压力测试记录（28 safe + 139 unsafe）
+- `gov_rewrite/enhanced_semantic_dedup_index.jsonl` — 89 个增强集结构语义族的代表记录
+- `gov_rewrite/arbiteros_cases_gov_rewrite_expanded.jsonl` — 247 条全部数据记录；不得表述为 247 个独立攻击模式
 - `human_readable/arbiteros_cases_human_readable.xlsx` — 80 条人类可读记录
 - `human_readable/ORIG-*.md` — 80 条逐 case 标记语言文件
 - `arbiteros_case_source_index.md` — 来源索引、可信度说明、AI 辅助说明
@@ -35,6 +43,14 @@ block-01-arbiteros-redteam-rewrite/
 | 公开数据集（Task 2） | 27 | Agent-SafetyBench（11 条）+ InjecAgent（16 条，DH 5 + DS 10） |
 | 原创扩展（Task 3） | 23 | 审批流（3）、批量操作（3）、OWASP LLM Top 10（12）、边界场景（5） |
 | **合计** | **80** | 22 safe + 58 unsafe |
+
+## 扩充集口径
+
+- 247 条全部记录 = 80 条核心唯一评测案例 + 167 条增强训练/压力测试记录。
+- 167 条增强记录包含父案例的路径/场景变体和新模板变体，不作为 167 个独立攻击模式宣传。
+- 每条记录增加 `source_origin`、`source_license`、`human_review_status`、`parent_case_id`、`dataset_partition`、`generation_kind` 和 `semantic_family_id`。
+- 人工复核状态当前统一为 `pending_manual_review`；结构可解析不等于语义已人工确认。
+- 详细质量与平衡分析见 `data/_audit/dataset_quality_report.md`。
 
 ## 每条案例都要同时满足两种记录形式
 
@@ -51,7 +67,7 @@ block-01-arbiteros-redteam-rewrite/
 
 - 工具：Claude Code (Claude Opus 4.7)
 - 用途：案例 JSON 结构生成、政务改写内容撰写、人类可读记录提取、xlsx 生成
-- 核验：已人工核对 case 编号、source 路径、攻击向量、场景描述
+- 核验：已完成结构与编号自动核验；逐条语义人工复核状态以 `human_review_status` 为准
 - 日期：2026-07-12
 
 ## 提交方式

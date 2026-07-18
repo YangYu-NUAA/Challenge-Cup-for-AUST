@@ -96,13 +96,13 @@ Skill 定义见 `data/block-03-gov-original-skills/skills/`。
 - `runs/20260712T025913.880037Z/`：80 条案例的完整运行目录（summary / results / parsed / raw / rendered_cases / observability）
 - `arbiteros_run_outputs/`：按 case_id 索引的 results / parsed / raw + `_index.json`（80 case_id × 1 run，240 文件，硬链接）
 - `index/arbiteros_run_index.xlsx`：80 条案例运行索引
-- `notes/arbiteros_failure_notes.md`：失败案例分析（6 条真阴性）
-- `notes/arbiteros_result_summary.md`：运行摘要（74/80 = 92.5% 通过）
+- `notes/arbiteros_failure_notes.md`：失败案例分析（6 条假阴性）
+- `notes/arbiteros_result_summary.md`：归档旧 runner 74/80 与严格口径 5×80（每轮 28/80）的对照摘要
 
 ## 3. 数据流
 
 ```text
-Block 01/02/03  ──→  统一案例库（160 条案例）  ──→  Block 04 风险分级
+Block 01/02/03  ──→  80 条核心唯一案例 / 160 条跨块映射记录  ──→  Block 04 风险分级
                                                             │
                                                     ┌───────┴───────┐
                                                     ↓               ↓
@@ -117,7 +117,7 @@ Block 01/02/03  ──→  统一案例库（160 条案例）  ──→  Block 
 
 ### 3.1 案例流转
 
-1. **案例生产**：Block 01（80 条）+ Block 02（27 条）+ Block 03（53 条）共 160 条案例。
+1. **案例生产**：Block 01 汇总形成 80 条核心唯一案例；Block 02（27 条）和 Block 03（53 条）是其中的来源子集。Block 04 共保留 160 条跨块映射记录，不等于 160 个唯一案例。
    每条案例同时包含人类可读记录（`.md`）和 ArbiterOS 可读记录（`.jsonl`，含 `trace_id` / `prior` / `current`）。
 2. **风险分级**：Block 04 基于案例的工具调用模式归纳风险等级和命中策略，输出 `case_to_policy_mapping.xlsx`。
 3. **批跑验证**：Block 05 使用 ArbiterOS 官方 `run_cases.py` 批量运行案例，收集 `summary.json` + `results/` + `parsed/` + `raw/`。

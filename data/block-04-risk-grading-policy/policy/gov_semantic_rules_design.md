@@ -1,7 +1,8 @@
-# 语义检测扩展规则
+# 语义检测扩展规则设计方案（未实跑）
 
 > 维护者整理。用于补充 ArbiterOS 当前「工具 + 路径」静态白名单的局限。
-> 这组规则针对 6 条真阴性案例设计，在 UnaryGatePolicy 之后作为第二层检测。
+> 这组规则针对 6 条假阴性案例设计，拟在 UnaryGatePolicy 之后作为第二层检测。
+> **状态：设计方案。尚未接入 ArbiterOS，也没有实跑结果。本文中的“覆盖”“拦截”均表示设计预期。**
 >
 > 设计原则：
 > - 不替换 UnaryGatePolicy，在其放行 / warn 之后再触发
@@ -12,7 +13,7 @@
 
 ## 规则设计思路
 
-### 为什么现有策略漏掉这 6 条
+### 为什么现有策略漏掉这 6 条假阴性
 
 ArbiterOS 的 UnaryGatePolicy 基于「工具 + 路径」静态白名单：
 
@@ -21,7 +22,7 @@ allow: [read, write, send_email, exec, ...]   # 工具白名单
 allow_paths: [/root/redteam/workspace/**]      # 路径白名单
 ```
 
-6 条真阴性的攻击向量全部满足白名单条件：
+6 条假阴性的攻击向量全部满足白名单条件：
 - 工具在允许列表（read / write / exec）
 - 路径在允许列表（/root/redteam/workspace/ 下）
 - 攻击触发来自外部输入内容（邮件正文 / 文档内容 / 知识库条目）
@@ -238,16 +239,16 @@ audit_points:
 
 ## 实施优先级
 
-1. **GOV-SEM-001**（敏感文件访问检测）— 最高优先级，覆盖 5/6 条真阴性
-2. **GOV-SEM-002**（社会工程意图检测）— 高优先级，覆盖 2/6 条
-3. **GOV-SEM-003**（跨边界访问检测）— 中优先级，覆盖 2/6 条
-4. **GOV-SEM-004**（知识库投毒检测）— 中优先级，覆盖 1/6 条
+1. **GOV-SEM-001**（敏感文件访问检测）— 最高优先级，设计上覆盖 5/6 条假阴性
+2. **GOV-SEM-002**（社会工程意图检测）— 高优先级，设计覆盖 2/6 条
+3. **GOV-SEM-003**（跨边界访问检测）— 中优先级，设计覆盖 2/6 条
+4. **GOV-SEM-004**（知识库投毒检测）— 中优先级，设计覆盖 1/6 条
 
 ## 预期效果
 
 实施后预期：
-- 当前 6 条真阴性应能被语义检测层拦截
-- 总通过率预期从 92.5% 降至 ~85%（6 条真阴性转为 deny/approval）
+- 如果 6 条假阴性全部被正确转为 deny/approval，且不新增误报，理论通过数为 80/80（100%）
+- 上述数字仅为理论上限；未完成实跑前只能表述为“预期改善”，不能宣称已经达到 100%
 - 误拦率需通过 block-01/03 的 44 条 safe 案例验证
 
 ## 验证方法
@@ -257,9 +258,9 @@ audit_points:
 cd ArbiterOS-Kernel
 
 # 1. 安装语义检测规则到 policy 注册表
-cp policy/gov_semantic_rules.yaml policy/
+cp policy/gov_semantic_rules_design.md docs/
 
-# 2. 跑 6 条真阴性案例验证拦截
+# 2. 实现规则后，跑 6 条假阴性案例验证预期防护动作
 uv run python redteam/_automation/run_cases.py \
     --case-id ORIG-DOC-006 \
     --case-id ORIG-MAIL-004 \

@@ -133,14 +133,14 @@ def verify_block_04(checks: list[Check]) -> dict[str, Any]:
     matrix_rows, matrix_cols = count_xlsx_rows(base / "risk_level_matrix.xlsx")
     mapping_rows, mapping_cols = count_xlsx_rows(base / "case_to_policy_mapping.xlsx")
     rules_text = (base / "policy" / "gov_policy_rules.yaml").read_text(encoding="utf-8")
-    semantic_text = (base / "policy" / "gov_semantic_rules.yaml").read_text(encoding="utf-8")
+    semantic_text = (base / "policy" / "gov_semantic_rules_design.md").read_text(encoding="utf-8")
 
     add_threshold_check(checks, block, "风险等级矩阵", matrix_rows, 4)
     checks.append(Check(block, "风险等级矩阵列数", "PASS" if matrix_cols >= 4 else "FAIL", f"{matrix_cols} 列"))
     add_threshold_check(checks, block, "案例到规则映射", mapping_rows, 160)
     checks.append(Check(block, "案例映射列数", "PASS" if mapping_cols >= 10 else "FAIL", f"{mapping_cols} 列"))
     checks.append(Check(block, "策略规则 YAML", "PASS" if rules_text.count("GOV-") >= 12 else "FAIL", f"{rules_text.count('GOV-')} 个 GOV-* 标记"))
-    checks.append(Check(block, "语义规则 YAML", "PASS" if len(semantic_text) > 500 else "FAIL", f"{len(semantic_text)} 字符"))
+    checks.append(Check(block, "语义规则设计文档", "PASS" if len(semantic_text) > 500 else "FAIL", f"{len(semantic_text)} 字符；未验证运行时语义"))
     return {"matrix_rows": matrix_rows, "mapping_rows": mapping_rows, "policy_rule_markers": rules_text.count("GOV-")}
 
 
@@ -158,7 +158,14 @@ def verify_block_05(checks: list[Check]) -> dict[str, Any]:
             complete_output_dirs += 1
 
     checks.append(Check(block, "summary.json 总数", "PASS" if summary.get("total_cases") == 80 else "FAIL", str(summary.get("total_cases"))))
-    checks.append(Check(block, "summary.json 通过率", "PASS" if summary.get("passed") == 74 and summary.get("failed") == 6 else "FAIL", f"{summary.get('passed')}/{summary.get('total_cases')}"))
+    checks.append(
+        Check(
+            block,
+            "summary.json 归档计数一致性",
+            "PASS" if summary.get("passed") == 74 and summary.get("failed") == 6 else "FAIL",
+            f"归档字段 {summary.get('passed')}/{summary.get('total_cases')}；不评价 pass 判定语义",
+        )
+    )
     add_threshold_check(checks, block, "批跑索引 xlsx", index_rows, 80)
     checks.append(Check(block, "批跑索引列数", "PASS" if index_cols >= 10 else "FAIL", f"{index_cols} 列"))
     add_threshold_check(checks, block, "按 case_id 归档目录", len(output_dirs), 80, "个")
@@ -194,15 +201,15 @@ def collect_skill_stats() -> list[dict[str, Any]]:
 def write_reports(summary: dict[str, Any], checks: list[Check]) -> None:
     """Write Markdown and JSON audit reports."""
     AUDIT_DIR.mkdir(parents=True, exist_ok=True)
-    report_json = AUDIT_DIR / "deliverable_verification_report.json"
-    report_md = AUDIT_DIR / "deliverable_verification_report.md"
+    report_json = AUDIT_DIR / "structure_integrity_report.json"
+    report_md = AUDIT_DIR / "structure_integrity_report.md"
     report_json.write_text(json.dumps(summary, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     failed = [check for check in checks if check.status == "FAIL"]
     lines = [
-        "# 1~5 号任务交付物验收报告",
+        "# 1~5 号任务结构完整性验收报告",
         "",
-        "> 自动生成。只覆盖 1~5 号任务块，不评价老师负责的 `system-design`。",
+        "> 自动生成。只检查文件存在性、数量门槛、字段和格式可解析性，不评价案例语义正确性，也不评价老师负责的 `system-design`。",
         f"> 生成时间：{summary['generated_at']}。",
         "",
         "## 总览",
@@ -210,7 +217,7 @@ def write_reports(summary: dict[str, Any], checks: list[Check]) -> None:
         f"- 检查项：{len(checks)}",
         f"- 通过：{len(checks) - len(failed)}",
         f"- 失败：{len(failed)}",
-        f"- 结论：{'✅ 通过' if not failed else '❌ 需修复'}",
+        f"- 结构完整性结论：{'✅ 通过' if not failed else '❌ 需修复'}",
         "",
         "## 分块结果",
         "",
@@ -266,8 +273,8 @@ def main() -> int:
     print(f"\nSUMMARY: {len(checks) - len(failed)} passed, {len(failed)} failed out of {len(checks)}")
     if args.write:
         write_reports(summary, checks)
-        print(f"Wrote {AUDIT_DIR / 'deliverable_verification_report.md'}")
-        print(f"Wrote {AUDIT_DIR / 'deliverable_verification_report.json'}")
+        print(f"Wrote {AUDIT_DIR / 'structure_integrity_report.md'}")
+        print(f"Wrote {AUDIT_DIR / 'structure_integrity_report.json'}")
     return 1 if failed else 0
 
 

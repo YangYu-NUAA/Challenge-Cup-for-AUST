@@ -1,8 +1,8 @@
 {
   "report": {
-    "generated_at": "2026-07-17T15:49:22.415157+00:00",
-    "files_scanned": 172,
-    "files_skipped": 589,
+    "generated_at": "2026-07-18T17:00:43.200273+00:00",
+    "files_scanned": 628,
+    "files_skipped": 172,
     "findings_count": 0,
     "findings": []
   },

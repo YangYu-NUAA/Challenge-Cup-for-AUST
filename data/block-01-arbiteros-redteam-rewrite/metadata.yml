@@ -14,10 +14,13 @@ sources:
     reliability: "中（公开 benchmark，MIT 协议）"
 deliverables:
   - "gov_rewrite/arbiteros_cases_gov_rewrite.jsonl（80 条政务改写案例）"
+  - "gov_rewrite/core_evaluation_cases.jsonl（80 条核心唯一评测案例）"
+  - "gov_rewrite/enhanced_training_stress_cases.jsonl（167 条增强训练/压力测试记录）"
+  - "gov_rewrite/enhanced_semantic_dedup_index.jsonl（89 个增强集结构语义族代表）"
   - "human_readable/arbiteros_cases_human_readable.xlsx（80 条人类可读记录）"
   - "human_readable/ORIG-*.md（80 条逐 case 标记语言文件）"
   - "arbiteros_case_source_index.md（来源索引与可信度说明）"
-notes: "汇总 80 条案例，覆盖 30 条 ArbiterOS 官方改写、27 条公开数据集、23 条原创扩展。"
+notes: "80 条核心唯一案例，覆盖 30 条 ArbiterOS 官方改写、27 条公开数据集、23 条原创扩展；另有 167 条增强训练/压力测试记录，不视为独立攻击模式。"
 ai_assistance:
   used: true
   tool: "Claude Code (Claude Opus 4.7)"

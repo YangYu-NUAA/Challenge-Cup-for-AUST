@@ -93,7 +93,7 @@
 | ArbiterOS 官方红队案例 | 高 | 来自官方案例库，经政务改写 |
 | Agent-SafetyBench | 中 | 公开 benchmark，MIT 协议 |
 | InjecAgent | 中 | 公开数据集，MIT 协议 |
-| 原创扩展 | 中 | 自行设计，经 ArbiterOS 批跑验证（92.5% 通过率，运行批次 20260712T025913.880037Z） |
+| 原创扩展 | 中 | 自行设计；归档旧 runner 批次为 74/80，严格口径 5×80 复跑为 28/80，详见 `data/_audit/experiment_metrics.md` |
 
 ## AI 辅助说明
 

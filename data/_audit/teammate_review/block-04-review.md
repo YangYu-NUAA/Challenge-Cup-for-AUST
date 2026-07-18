@@ -10,7 +10,7 @@
 |------|------|----------|
 | `data/block-04-risk-grading-policy/risk_level_matrix.xlsx` | 四级风险矩阵 | ✅ |
 | `data/block-04-risk-grading-policy/policy/gov_policy_rules.yaml` | 12 条 GOV-* 策略规则 | ✅ |
-| `data/block-04-risk-grading-policy/policy/gov_semantic_rules.yaml` | 4 条 GOV-SEM-* 语义检测规则 | ✅ |
+| `data/block-04-risk-grading-policy/policy/gov_semantic_rules_design.md` | 4 条 GOV-SEM-* 语义检测设计方案（未实跑） | ✅ |
 | `data/block-04-risk-grading-policy/case_to_policy_mapping.xlsx` | 160 条案例 × 12 规则映射 | ✅ |
 | `data/block-04-risk-grading-policy/metadata.yml` | 块元数据 | ✅ |
 | `data/block-04-risk-grading-policy/README.md` | 块说明 | ✅ |
@@ -40,7 +40,7 @@ for rule in rules:
     print(f'  {rule[\"rule_id\"]}: {rule[\"rule_name\"]} (priority={rule[\"priority\"]}, layer={rule[\"layer\"]}, decision={rule[\"decision\"]})')
 
 # 语义检测规则
-path2 = Path('data/block-04-risk-grading-policy/policy/gov_semantic_rules.yaml')
+path2 = Path('data/block-04-risk-grading-policy/policy/gov_semantic_rules_design.md')
 with open(path2, encoding='utf-8') as f:
     sem = yaml.safe_load(f)
 print(f'\\n语义检测规则数: {len(sem)}')
@@ -98,18 +98,18 @@ for r in range(2, 12):
 
 ### 5. 语义检测规则合理性
 
-打开 `gov_semantic_rules.yaml`，确认 4 条 GOV-SEM-* 规则：
-- [ ] GOV-SEM-001（敏感文件访问）覆盖 5/6 条真阴性案例
-- [ ] GOV-SEM-002（社会工程意图）覆盖 2/6 条
-- [ ] GOV-SEM-003（跨边界访问）覆盖 2/6 条
-- [ ] GOV-SEM-004（知识库投毒）覆盖 1/6 条
+打开 `gov_semantic_rules_design.md`，确认 4 条 GOV-SEM-* 设计方案：
+- [ ] GOV-SEM-001（敏感文件访问）设计覆盖 5/6 条假阴性案例
+- [ ] GOV-SEM-002（社会工程意图）设计覆盖 2/6 条
+- [ ] GOV-SEM-003（跨边界访问）设计覆盖 2/6 条
+- [ ] GOV-SEM-004（知识库投毒）设计覆盖 1/6 条
 - [ ] 每条规则有明确的触发条件、检测模式、决策
 - [ ] 优先级设置合理（GOV-SEM-001 最高，200）
 
 ### 6. 与批跑结果一致性
 
-对照 `data/block-05-arbiteros-batch-run/notes/arbiteros_failure_notes.md` 中的 6 条真阴性：
-- [ ] 6 条真阴性在映射表中标记为未拦截（或标记为已知局限）
+对照 `data/block-05-arbiteros-batch-run/notes/arbiteros_failure_notes.md` 中的 6 条假阴性：
+- [ ] 6 条假阴性在映射表中标记为未拦截（或标记为已知局限）
 - [ ] 语义检测规则 GOV-SEM-* 的设计能覆盖这 6 条
 
 ### 7. 安全扫描
@@ -129,7 +129,7 @@ python -X utf8 src/scripts/security_audit.py
 | 规则 YAML 解析报错 | 用 `python -c "import yaml; yaml.safe_load(open(...))"` 验证格式 |
 | 映射表行数 ≠ 160 | 确认去重前的总数（block-01 80 + block-02 27 + block-03 53 = 160） |
 | 语义检测规则与主规则冲突 | GOV-SEM-* 是补充层，不应与 GOV-DENY-* 等重复 |
-| 真阴性未在映射表中体现 | 6 条真阴性应有特殊标记或备注 |
+| 假阴性未在映射表中体现 | 6 条假阴性应有特殊标记或备注 |
 
 ---
 

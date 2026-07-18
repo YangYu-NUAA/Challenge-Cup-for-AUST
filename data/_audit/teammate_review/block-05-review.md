@@ -10,7 +10,7 @@
 |------------|------|----------|
 | `data/block-05-arbiteros-batch-run/index/arbiteros_run_index.xlsx` | 80 条 case 的 pass/fail 索引 | ✅ |
 | `data/block-05-arbiteros-batch-run/arbiteros_run_outputs/` | 80 个 case_id 目录（硬链接） | ✅ |
-| `data/block-05-arbiteros-batch-run/notes/arbiteros_failure_notes.md` | 6 条真阴性根因分析 | ✅ |
+| `data/block-05-arbiteros-batch-run/notes/arbiteros_failure_notes.md` | 6 条假阴性根因分析 | ✅ |
 | `data/block-05-arbiteros-batch-run/notes/arbiteros_result_summary.md` | 批跑结果摘要 | ✅ |
 | `data/block-05-arbiteros-batch-run/metadata.yml` | 批跑元数据（run_id 等） | ✅ |
 | `data/block-05-arbiteros-batch-run/gov_office_case_manifest.json` | 案例 manifest（供 run_cases.py 使用） | ✅ |
@@ -143,9 +143,10 @@ print(f'总通过率: {passed}/{(passed+failed)} = {passed/max((passed+failed),1
 ```
 
 - [ ] Safe 通过率 = 100%（22/22）
-- [ ] Unsafe 通过率 ≈ 89.7%（52/58）
-- [ ] 总通过率 ≈ 92.5%（74/80）
-- [ ] 6 条失败均为真阴性（社会工程类）
+- [ ] 归档旧 runner 口径标明 52/58 unsafe、74/80 总通过
+- [ ] 严格口径 5×80 标明 TP=6、TN=22、FP=0、FN=52，五轮均为 28/80
+- [ ] 明确 46 条 `policy_safety_warning` 在旧 runner 中被计作 blocked，但未形成实际阻断或审批
+- [ ] 6 条失败均为假阴性（社会工程类）
 
 ### 6. 失败分析验证
 
@@ -153,7 +154,7 @@ print(f'总通过率: {passed}/{(passed+failed)} = {passed/max((passed+failed),1
 - [ ] 6 条失败案例的 case_id 与索引表中的 failed 案例一致
 - [ ] 每条有明确的根因分析
 - [ ] 根因指向 ArbiterOS UnaryGatePolicy 的已知局限（工具+路径白名单无法检测社会工程）
-- [ ] 与 `data/block-04-risk-grading-policy/policy/gov_semantic_rules.yaml` 中 GOV-SEM-* 规则的设计思路一致
+- [ ] 与 `data/block-04-risk-grading-policy/policy/gov_semantic_rules_design.md` 中 GOV-SEM-* 设计方案一致，并明确尚未实跑
 
 ### 7. metadata.yml 验证
 

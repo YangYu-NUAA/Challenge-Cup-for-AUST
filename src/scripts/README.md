@@ -5,7 +5,7 @@
 ## 脚本清单
 
 - `validate_structure.py`：检查每个 `data/block-XX/` 是否包含必要的目录、README、metadata.yml，并在严格模式下检查 JSONL / Excel / 标准案例库是否有真实数据。
-- `verify_deliverables.py`：按 1~5 号任务验收口径检查交付物数量、可解析性、批跑归档完整性，并生成 `data/_audit/deliverable_verification_report.*`。
+- `verify_deliverables.py`：检查 1~5 号任务交付物的数量、可解析性和归档完整性，并生成 `data/_audit/structure_integrity_report.*`。该报告不评价案例语义正确性。
 - `parse_arbiteros_trace.py`：把 `raw/arbiteros_logs/*.jsonl` 解析成 `processed/trace_summary.json` 和 `processed/timeline.csv`。
 
 ## 使用方式
