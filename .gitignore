@@ -16,6 +16,7 @@ node_modules/
 
 # 本地笔记（建议不上传）
 local-notes.md
+_working/
 
 # 大于 10 MB 的原始数据请使用 Git LFS 或外部网盘
 # 如启用 LFS，请取消下方注释并配置跟踪规则
