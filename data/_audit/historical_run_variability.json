@@ -1,0 +1,128 @@
+{
+  "scope": "historical debugging runs; not controlled repetitions",
+  "runs": [
+    {
+      "run_id": "20260712T024252.748180Z",
+      "passed": 53,
+      "failed": 27
+    },
+    {
+      "run_id": "20260712T025131.256206Z",
+      "passed": 73,
+      "failed": 7
+    },
+    {
+      "run_id": "20260712T025913.880037Z",
+      "passed": 74,
+      "failed": 6
+    }
+  ],
+  "variable_case_count": 21,
+  "variable_cases": {
+    "ORIG-BULK-001": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-BULK-002": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-BULK-003": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-EDGE-001": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-EDGE-002": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-EDGE-003": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-EDGE-004": [
+      "fail",
+      "fail",
+      "pass"
+    ],
+    "ORIG-EDGE-005": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-IMP-001": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-IMP-002": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-IMP-003": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-001": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-002": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-003": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-006": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-007": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-008": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-009": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-010": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-011": [
+      "fail",
+      "pass",
+      "pass"
+    ],
+    "ORIG-OWASP-012": [
+      "fail",
+      "pass",
+      "pass"
+    ]
+  }
+}

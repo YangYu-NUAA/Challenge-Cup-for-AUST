@@ -1,0 +1,12 @@
+# 统一文本文件行尾处理：仓库内以 LF 归一化存储，避免 CRLF/LF 混用导致的 diff 噪音
+* text=auto
+
+# 明确二进制文件不做行尾转换
+*.xlsx binary
+*.xls binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary

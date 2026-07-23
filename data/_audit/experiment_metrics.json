@@ -1,0 +1,171 @@
+{
+  "generated_at": "2026-07-18T16:48:12.014439+00:00",
+  "repeats": 5,
+  "cases_per_repeat": 80,
+  "repeat_summaries": [
+    {
+      "repeat": 1,
+      "confusion_matrix": {
+        "tp": 6,
+        "tn": 22,
+        "fp": 0,
+        "fn": 52,
+        "errors": 0
+      },
+      "metrics": {
+        "accuracy": 0.35,
+        "precision": 1.0,
+        "recall": 0.10344827586206896,
+        "f1": 0.1875,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.896551724137931
+      }
+    },
+    {
+      "repeat": 2,
+      "confusion_matrix": {
+        "tp": 6,
+        "tn": 22,
+        "fp": 0,
+        "fn": 52,
+        "errors": 0
+      },
+      "metrics": {
+        "accuracy": 0.35,
+        "precision": 1.0,
+        "recall": 0.10344827586206896,
+        "f1": 0.1875,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.896551724137931
+      }
+    },
+    {
+      "repeat": 3,
+      "confusion_matrix": {
+        "tp": 6,
+        "tn": 22,
+        "fp": 0,
+        "fn": 52,
+        "errors": 0
+      },
+      "metrics": {
+        "accuracy": 0.35,
+        "precision": 1.0,
+        "recall": 0.10344827586206896,
+        "f1": 0.1875,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.896551724137931
+      }
+    },
+    {
+      "repeat": 4,
+      "confusion_matrix": {
+        "tp": 6,
+        "tn": 22,
+        "fp": 0,
+        "fn": 52,
+        "errors": 0
+      },
+      "metrics": {
+        "accuracy": 0.35,
+        "precision": 1.0,
+        "recall": 0.10344827586206896,
+        "f1": 0.1875,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.896551724137931
+      }
+    },
+    {
+      "repeat": 5,
+      "confusion_matrix": {
+        "tp": 6,
+        "tn": 22,
+        "fp": 0,
+        "fn": 52,
+        "errors": 0
+      },
+      "metrics": {
+        "accuracy": 0.35,
+        "precision": 1.0,
+        "recall": 0.10344827586206896,
+        "f1": 0.1875,
+        "false_positive_rate": 0.0,
+        "false_negative_rate": 0.896551724137931
+      }
+    }
+  ],
+  "aggregate": {
+    "accuracy": {
+      "mean": 0.35,
+      "pstdev": 0.0
+    },
+    "precision": {
+      "mean": 1.0,
+      "pstdev": 0.0
+    },
+    "recall": {
+      "mean": 0.10344827586206896,
+      "pstdev": 0.0
+    },
+    "f1": {
+      "mean": 0.1875,
+      "pstdev": 0.0
+    },
+    "false_positive_rate": {
+      "mean": 0.0,
+      "pstdev": 0.0
+    },
+    "false_negative_rate": {
+      "mean": 0.896551724137931,
+      "pstdev": 0.0
+    }
+  },
+  "stability": {
+    "stable_cases": 80,
+    "variable_cases": 0,
+    "variable_case_ids": []
+  },
+  "reproducibility": {
+    "arbiteros_commit": "78a8f98b1f1b4fdd2d875a058f52896cb588f8cf",
+    "policy_registry_sha256": "F43D4A3FE08E25BE5EF967DCBD461987831F311ACCF0F54DB48054114B22C776",
+    "rendered_cases_source": "data\\block-05-arbiteros-batch-run\\runs\\20260712T025913.880037Z\\rendered_cases",
+    "model": "not applicable: policy harness replay",
+    "temperature": "not applicable",
+    "command_template": "<venv-python> -m arbiteros_kernel.policy_test_harness <rendered_case.json> --dump-instructions",
+    "baseline_summary_sha256": "30BB1BBE45475E22FF8CC3C9DBEA11E2C2956196D900E0FA9B4A9D580462AFCF",
+    "rendered_cases_sha256": "C79460D773686F70078EFFCBA5CB8B2AFA78A391FD08D1B073D2F5A3C458CF57",
+    "arbiteros_worktree_status": [
+      " M ArbiterOS-Kernel/litellm_config.yaml",
+      "?? .env",
+      "?? ArbiterOS-Kernel/generate_human_readable.py",
+      "?? ArbiterOS-Kernel/populate_block05.py",
+      "?? ArbiterOS-Kernel/redteam/case/gov_office/",
+      "?? run-kernel.ps1",
+      "?? scripts/configure_openclaw.py"
+    ]
+  },
+  "archived_baseline": {
+    "run_id": "20260712T025913.880037Z",
+    "confusion_matrix": {
+      "tp": 52,
+      "tn": 22,
+      "fp": 0,
+      "fn": 6
+    },
+    "metrics": {
+      "accuracy": 0.925,
+      "precision": 1.0,
+      "recall": 0.896551724137931,
+      "f1": 0.9454545454545454,
+      "false_positive_rate": 0.0,
+      "false_negative_rate": 0.10344827586206896
+    },
+    "block_reason_counts": {
+      "no_block": 28,
+      "policy_safety_warning": 46,
+      "error_type": 6
+    },
+    "caveat": "The archived runner counted policy_safety_warning as blocked. The controlled replay counts only an actual response modification, tool-call removal, explicit block, or approval prompt."
+  },
+  "full_results": "data\\block-05-arbiteros-batch-run\\repeat_runs\\20260718T164152.127456Z\\repeat_evaluation_summary.json"
+}
