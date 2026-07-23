@@ -1,4 +1,4 @@
-# 公开数据集与安全标准中的攻击模式提取
+# 公开数据集与安全模式提取
 
 > 本块对应任务书第 2 节：2 号负责人。
 
@@ -12,8 +12,6 @@ block-02-public-datasets-attack-patterns/
 │   └── public_patterns_to_gov_cases.jsonl
 ├── screening/
 │   └── public_benchmark_case_screening.xlsx
-├── raw/
-│   └── public_datasets/（原始数据引用说明）
 └── discarded/
     └── discarded_cases.md
 ```
@@ -22,19 +20,35 @@ block-02-public-datasets-attack-patterns/
 
 - `README.md` — 本文件
 - `metadata.yml` — 来源 / 可信度 / AI 辅助说明
-- `gov_cases/public_patterns_to_gov_cases.jsonl` — 27 条政务改写案例（PUB-ASB-* / PUB-INJECAGENT-*）
-- `screening/public_benchmark_case_screening.xlsx` — 筛选记录
-- `discarded/discarded_cases.md` — 被排除案例及原因
+- `gov_cases/public_patterns_to_gov_cases.jsonl` — 51 条政务改写案例（PUB-INJECAGENT-001 ~ PUB-INJECAGENT-017 + PUB-INJECAGENT-019 ~ PUB-INJECAGENT-052）
+- `screening/public_benchmark_case_screening.xlsx` — 筛选记录（DH 基础库筛选表 + DS 精选库筛选表，两个 sheet）
+- `discarded/discarded_cases.md` — 被排除案例及原因（DH 493 条 + DS 514 条）
 
-## 案例构成（27 条）
+## 案例构成（51 条）
 
-| 来源数据集 | 数量 | 类型 |
-|-----------|------|------|
-| Agent-SafetyBench | 11 | 信息窃取、越权操作等 |
-| InjecAgent (Direct Hijack) | 6 | 直接劫持 |
-| InjecAgent (Data Scoping) | 10 | 数据越权 |
+| 来源数据集 | 总数 | 入选数 | 说明 |
+|-----------|------|--------|------|
+| InjecAgent DH 基础库 | 510 | 17 | 排除 493 条（纯个人场景 11 + 已有类似案例 2 + 跨工具组重复 480） |
+| InjecAgent DS 精选库 | 545 | 34 | 排除 514 条（17 组工具链 × 每组精选 2 条，覆盖地址外泄、支付方式外泄、基因数据外泄等攻击类型） |
 
-所有案例均已改写为政务场景（政府办公助手）。
+**合计 51 条**，所有案例均已改写为政务场景（政府办公助手）。
+
+## 筛选方法
+
+### DH 基础库（510 → 17）
+
+1. **排除纯个人消费场景**（11 条）：加密货币交易、智能家居控制、个人银行转账等无法映射政务办公的场景
+2. **排除已有类似案例**（2 条）：攻击模式与已入选案例高度重叠（基因数据篡改、医疗文档删除）
+3. **排除跨工具组重复**（480 条）：InjecAgent 将同一攻击模式植入不同用户工具组，攻击模式相同仅场景不同，不增加多样性
+
+### DS 精选库（545 → 34）
+
+采用"17 组工具链 × 每组精选 2 条"策略：
+- 每组工具链中选取最具代表性的 2 条案例
+- 覆盖攻击类型：地址信息外泄、支付方式外泄、基因/健康数据外泄、虚假预约、设备操控、文件泄露、网络策略篡改等
+- 剩余案例因"同组已选案例已覆盖相同攻击类型"或"多样性已达上限"被排除
+
+详细排除原因见 `discarded/discarded_cases.md`。
 
 ## 每条案例都要同时满足两种记录形式
 
@@ -51,13 +65,6 @@ block-02-public-datasets-attack-patterns/
 
 - Agent-SafetyBench：MIT 协议
 - InjecAgent：MIT 协议
-
-## AI 辅助说明
-
-- 工具：Claude Code (Claude Opus 4.7)
-- 用途：攻击模式识别、政务场景改写、案例 JSON 结构生成
-- 核验：已人工核对攻击向量、case 编号、场景改写准确性
-- 日期：2026-07-12
 
 ## 提交方式
 
