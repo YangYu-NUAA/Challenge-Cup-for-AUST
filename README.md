@@ -42,7 +42,8 @@ Challenge-Cup-for-AUST/
 │   ├── block-03-gov-original-skills/             # 3 号：政务办公原创场景与 OpenClaw 办公 Skills
 │   ├── block-04-risk-grading-policy/             # 4 号：四级风险分级与策略规则
 │   ├── block-05-arbiteros-batch-run/             # 5 号：ArbiterOS 既有案例批跑与结果归档
-│   └── system-design/                            # 维护者：总框架接入与系统设计
+│   ├── system-design/                            # 维护者：总框架接入与系统设计
+│   └── _audit/                                   # 维护者：数据安全审计基线（含敏感内容扫描脚本）
 ├── system/                                       # 最终系统架构与部署文档
 ├── src/
 │   ├── scripts/                                  # 结构初始化、自检、解析脚本

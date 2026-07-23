@@ -1,0 +1,106 @@
+{
+  "core": {
+    "total": 80,
+    "safe": 22,
+    "unsafe": 58
+  },
+  "enhanced": {
+    "total": 167,
+    "safe": 28,
+    "unsafe": 139,
+    "safe_ratio": 0.16766467065868262,
+    "unsafe_ratio": 0.8323353293413174
+  },
+  "all_records": 247,
+  "semantic_families": {
+    "all": 153,
+    "enhanced": 89
+  },
+  "dedup_representatives": 89,
+  "balance_gap": {
+    "safe_target": 70,
+    "safe_cases_needed": 42
+  },
+  "largest_enhanced_families": [
+    {
+      "semantic_family_id": "SEM-23C65981C018",
+      "records": 12
+    },
+    {
+      "semantic_family_id": "SEM-50E6C074DFEC",
+      "records": 9
+    },
+    {
+      "semantic_family_id": "SEM-4E67E62DC999",
+      "records": 6
+    },
+    {
+      "semantic_family_id": "SEM-415CF9A31BE1",
+      "records": 6
+    },
+    {
+      "semantic_family_id": "SEM-952D79B4E61E",
+      "records": 6
+    },
+    {
+      "semantic_family_id": "SEM-BECB337FF245",
+      "records": 6
+    },
+    {
+      "semantic_family_id": "SEM-EC1D0C212560",
+      "records": 6
+    },
+    {
+      "semantic_family_id": "SEM-53A1CB59F26D",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-23B3393B4AED",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-3D4E08DD6474",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-F8A50553BC3C",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-1DFDB4CF7F8A",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-4849339F94C3",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-CF676FB36D26",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-1D42B04682D7",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-74B2882515B6",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-0EB6B6BD894E",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-FF6790D8C046",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-28F836CC2749",
+      "records": 3
+    },
+    {
+      "semantic_family_id": "SEM-4698BCF1BC86",
+      "records": 3
+    }
+  ]
+}
