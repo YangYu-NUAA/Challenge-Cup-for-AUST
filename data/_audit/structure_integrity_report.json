@@ -1,0 +1,280 @@
+{
+  "generated_at": "2026-07-18T17:00:42.057949+00:00",
+  "scope": "block-01..block-05 only; system-design excluded",
+  "checks": [
+    {
+      "block": "block-01",
+      "item": "人类可读 xlsx",
+      "status": "PASS",
+      "detail": "80 条，验收下限 80 条"
+    },
+    {
+      "block": "block-01",
+      "item": "人类可读 xlsx 列数",
+      "status": "PASS",
+      "detail": "10 列"
+    },
+    {
+      "block": "block-01",
+      "item": "政务改写 JSONL",
+      "status": "PASS",
+      "detail": "80 条，验收下限 80 条"
+    },
+    {
+      "block": "block-01",
+      "item": "政务改写 JSONL 可解析",
+      "status": "PASS",
+      "detail": "0 个解析错误"
+    },
+    {
+      "block": "block-01",
+      "item": "扩充版 JSONL",
+      "status": "PASS",
+      "detail": "247 条，验收下限 247 条"
+    },
+    {
+      "block": "block-01",
+      "item": "扩充版 JSONL 可解析",
+      "status": "PASS",
+      "detail": "0 个解析错误"
+    },
+    {
+      "block": "block-01",
+      "item": "人类可读 md",
+      "status": "PASS",
+      "detail": "80 个，验收下限 80 个"
+    },
+    {
+      "block": "block-01",
+      "item": "源路径索引",
+      "status": "PASS",
+      "detail": "7172 bytes"
+    },
+    {
+      "block": "block-02",
+      "item": "公开筛选 xlsx",
+      "status": "PASS",
+      "detail": "1571 条，验收下限 1500 条"
+    },
+    {
+      "block": "block-02",
+      "item": "公开筛选 xlsx 列数",
+      "status": "PASS",
+      "detail": "12 列"
+    },
+    {
+      "block": "block-02",
+      "item": "政务改写 JSONL",
+      "status": "PASS",
+      "detail": "27 条，验收下限 27 条"
+    },
+    {
+      "block": "block-02",
+      "item": "政务改写 JSONL 可解析",
+      "status": "PASS",
+      "detail": "0 个解析错误"
+    },
+    {
+      "block": "block-02",
+      "item": "案例编号不重复",
+      "status": "PASS",
+      "detail": "0 个重复编号"
+    },
+    {
+      "block": "block-02",
+      "item": "排除案例说明",
+      "status": "PASS",
+      "detail": "159 行，验收下限 100 行"
+    },
+    {
+      "block": "block-03",
+      "item": "OpenClaw Skill",
+      "status": "PASS",
+      "detail": "5 个，验收下限 5 个"
+    },
+    {
+      "block": "block-03",
+      "item": "gov-calendar-task-assistant",
+      "status": "PASS",
+      "detail": "577 字符"
+    },
+    {
+      "block": "block-03",
+      "item": "gov-cross-department-assistant",
+      "status": "PASS",
+      "detail": "617 字符"
+    },
+    {
+      "block": "block-03",
+      "item": "gov-document-assistant",
+      "status": "PASS",
+      "detail": "654 字符"
+    },
+    {
+      "block": "block-03",
+      "item": "gov-mail-assistant",
+      "status": "PASS",
+      "detail": "587 字符"
+    },
+    {
+      "block": "block-03",
+      "item": "gov-meeting-assistant",
+      "status": "PASS",
+      "detail": "782 字符"
+    },
+    {
+      "block": "block-03",
+      "item": "原创案例 JSONL",
+      "status": "PASS",
+      "detail": "53 条，验收下限 53 条"
+    },
+    {
+      "block": "block-03",
+      "item": "原创案例 JSONL 可解析",
+      "status": "PASS",
+      "detail": "0 个解析错误"
+    },
+    {
+      "block": "block-04",
+      "item": "风险等级矩阵",
+      "status": "PASS",
+      "detail": "4 条，验收下限 4 条"
+    },
+    {
+      "block": "block-04",
+      "item": "风险等级矩阵列数",
+      "status": "PASS",
+      "detail": "4 列"
+    },
+    {
+      "block": "block-04",
+      "item": "案例到规则映射",
+      "status": "PASS",
+      "detail": "160 条，验收下限 160 条"
+    },
+    {
+      "block": "block-04",
+      "item": "案例映射列数",
+      "status": "PASS",
+      "detail": "11 列"
+    },
+    {
+      "block": "block-04",
+      "item": "策略规则 YAML",
+      "status": "PASS",
+      "detail": "12 个 GOV-* 标记"
+    },
+    {
+      "block": "block-04",
+      "item": "语义规则设计文档",
+      "status": "PASS",
+      "detail": "6144 字符；未验证运行时语义"
+    },
+    {
+      "block": "block-05",
+      "item": "summary.json 总数",
+      "status": "PASS",
+      "detail": "80"
+    },
+    {
+      "block": "block-05",
+      "item": "summary.json 归档计数一致性",
+      "status": "PASS",
+      "detail": "归档字段 74/80；不评价 pass 判定语义"
+    },
+    {
+      "block": "block-05",
+      "item": "批跑索引 xlsx",
+      "status": "PASS",
+      "detail": "80 条，验收下限 80 条"
+    },
+    {
+      "block": "block-05",
+      "item": "批跑索引列数",
+      "status": "PASS",
+      "detail": "12 列"
+    },
+    {
+      "block": "block-05",
+      "item": "按 case_id 归档目录",
+      "status": "PASS",
+      "detail": "80 个，验收下限 80 个"
+    },
+    {
+      "block": "block-05",
+      "item": "完整 results/parsed/raw 目录",
+      "status": "PASS",
+      "detail": "80 个，验收下限 80 个"
+    }
+  ],
+  "block_summary": {
+    "block_01": {
+      "xlsx_rows": 80,
+      "jsonl_rows": 80,
+      "expanded_rows": 247,
+      "md_files": 80
+    },
+    "block_02": {
+      "screening_rows": 1571,
+      "jsonl_rows": 27,
+      "discarded_lines": 159
+    },
+    "block_03": {
+      "skills": 5,
+      "jsonl_rows": 53
+    },
+    "block_04": {
+      "matrix_rows": 4,
+      "mapping_rows": 160,
+      "policy_rule_markers": 12
+    },
+    "block_05": {
+      "total_cases": 80,
+      "passed": 74,
+      "failed": 6,
+      "pass_rate": 92.5,
+      "output_dirs": 80,
+      "complete_output_dirs": 80
+    }
+  },
+  "skill_stats": [
+    {
+      "skill": "gov-calendar-task-assistant",
+      "total": 10,
+      "safe": 4,
+      "pass": 10,
+      "unsafe": 6
+    },
+    {
+      "skill": "gov-cross-department-assistant",
+      "total": 18,
+      "safe": 5,
+      "pass": 16,
+      "unsafe": 13,
+      "fail": 2
+    },
+    {
+      "skill": "gov-document-assistant",
+      "total": 20,
+      "safe": 6,
+      "pass": 18,
+      "unsafe": 14,
+      "fail": 2
+    },
+    {
+      "skill": "gov-mail-assistant",
+      "total": 25,
+      "safe": 3,
+      "pass": 23,
+      "unsafe": 22,
+      "fail": 2
+    },
+    {
+      "skill": "gov-meeting-assistant",
+      "total": 7,
+      "safe": 4,
+      "pass": 7,
+      "unsafe": 3
+    }
+  ]
+}
